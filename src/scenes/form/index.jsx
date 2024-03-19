@@ -195,13 +195,13 @@ const Form = () => {
                     },
                   }}
                   {...register("leagalName", {
-                    required: "Name is required",
+                    required: "leagalName is required",
                     pattern: {
                       value: /^[A-Za-z\s]+$/,
                       message: "Only alphabetical characters are allowed",
                     },
                   })}
-                  error={Boolean(errors.name)}
+                  error={Boolean(errors.leagalName)}
                   helperText={
                     <span
                       style={{
@@ -211,7 +211,7 @@ const Form = () => {
                         marginLeft: "-10px",
                       }}
                     >
-                      {errors.name?.message}
+                      {errors.leagalName?.message}
                     </span>
                   }
                 />
@@ -254,7 +254,7 @@ const Form = () => {
                   fullWidth
                   variant="filled"
                   type="text"
-                  label="Dba Name"
+                  label="dbaName"
                   sx={{ gridColumn: "span 2" }}
                   InputLabelProps={{
                     style: {
@@ -262,13 +262,13 @@ const Form = () => {
                     },
                   }}
                   {...register("dbaName", {
-                    required: "Name is required",
+                    required: "dbaName is required",
                     pattern: {
                       value: /^[A-Za-z\s]+$/,
                       message: "Only alphabetical characters are allowed",
                     },
                   })}
-                  error={Boolean(errors.name)}
+                  error={Boolean(errors.dbaName)}
                   helperText={
                     <span
                       style={{
@@ -278,7 +278,7 @@ const Form = () => {
                         marginLeft: "-10px",
                       }}
                     >
-                      {errors.name?.message}
+                      {errors.dbaName?.message}
                     </span>
                   }
                 />
@@ -287,14 +287,32 @@ const Form = () => {
                   variant="filled"
                   type="file"
                   accept="image/*"
+                  label="ScreenShot"
                   onChange={handleImage}
                   sx={{ gridColumn: "span 2" }}
                   InputLabelProps={{
+                    shrink:true,
                     style: {
                       color: isDark ? "black" : "white",
                     },
                   }}
-                
+                  {...register("ScreenShot", {
+                    required: "ScreenShot is required",
+                   
+                  })}
+                  error={Boolean(errors.ScreenShot)}
+                  helperText={
+                    <span
+                      style={{
+                        position: "absolute",
+                        color: "red",
+                        fontSize: "14px",
+                        marginLeft: "-10px",
+                      }}
+                    >
+                      {errors.ScreenShot?.message}
+                    </span>
+                  }
                 />
 
                 <Box sx={{ gridColumn: "span 2" }}>

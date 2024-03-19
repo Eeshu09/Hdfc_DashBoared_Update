@@ -31,23 +31,34 @@ import EditModal from "../../components/Modal/EditModal";
 import Table from "../../components/Table";
 import FormComplanceModal from "../../components/Modal/FormComplanceModal";
 import { useNavigate } from "react-router-dom";
+import { SelectAllOutlined } from "@mui/icons-material";
 
 
 function MrmScreen(){ 
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const[formModalOpen,setFormModalOpen]=useState(false);
+  const[selectImage,setSelectImage]=useState('');
 
   const navigate = useNavigate();
 
 
     const MrmEmail = sessionStorage.getItem("MrmEmail");
     console.log("mrm", MrmEmail);
-    const[selectImage,setSelectImage]=useState('');
 
-  
+    const SelectImages=(e)=>{
+      const file=e.target.files[0];
+      setSelectImage(file);
+    }
     const onSubmit = async (data) => {
       setLoading(true);
+      console.log("data",data);
      
       const formData=new FormData();
       formData.append("creatorEmailID",MrmEmail);
@@ -110,22 +121,9 @@ function MrmScreen(){
     const {isLoading,error,data:data1,refetch}=useQuery({queryKey:["merchant"],
     queryFn:fetchData1,
   })
-    const {
-        register,
-        formState: { errors },
-        handleSubmit,
-        reset,
-      } = useForm({
-        defaultValues: {
-          merchantType: "", 
-        },
-      });
-      
-      const handleImage = (e) => {
-        const file = e.target.files[0];
-        setSelectImage(file);
     
-      };
+      
+     
       const handleEdit = (row) => {
         setSelectedRow(row);
         setEditModalOpen(true);
@@ -370,11 +368,10 @@ function MrmScreen(){
                   type="file"
                   accept="image/*"
                   label="Sreenshot"
-                  onChange={handleImage}
+                  onChange={SelectImages}
                   sx={{ gridColumn: "span 2" }}
                   InputLabelProps={{
                     shrink: true,
-
                     style: {
                       fontSize:'18px',
                       color: isDark ? "black" : "white",
@@ -398,8 +395,8 @@ function MrmScreen(){
                       {errors.Screenshot?.message}
                     </span>
                   }
-                />
-
+                /> 
+                
                
               </Box>
               <Box display="flex" justifyContent="center" mt="20px">

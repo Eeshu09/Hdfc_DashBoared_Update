@@ -1,4 +1,4 @@
-import { Box, Button, Modal, TextField ,CircularProgress} from "@mui/material";
+import { Box, Button, Modal, TextField ,CircularProgress,MenuItem} from "@mui/material";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../apiConfig";
 import axios from "axios";
@@ -38,30 +38,36 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
     handleCloseModal();
   }
 
-  const handleEditSubmit = async (email) => { 
+  const handleEditSubmit = async () => { 
     setLoading(true);
     try {
         const patchData = [
             {
-                // operationType: 0,
                 path: "/leagalName",
                 op: "replace",
-                from: "string",
-                value:`${editData?.leagalName}`,
+                // from: "string",
+                value: editData?.leagalName,
             },
             {
               path: "/email",
               op: "replace",
-              from: "string",
-              value:`${editData?.email}`, 
+              // from: "string",
+              value:editData?.email, 
             },
-           
+            
             {
               path: "/dbaName",
               op: "replace",
-              from: "string",
-              value:`${editData?.dbaName}`, 
+              // from: "string",
+              value:editData?.dbaName, 
             },
+            {
+              path: "/merchantType",
+              op: "replace",
+              // from: "string",
+              value:editData?.merchantType, 
+            },
+           
            
            
             
@@ -71,7 +77,7 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
             `${BASE_URL}PatchMerchant`,
             patchData,{
               params:{
-                Email:email
+                Email:editData.email
               },
             }
         );
@@ -97,6 +103,10 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
 
     }
 };
+const handleMerchantTypeChange = (e) => {
+  setEditData({ ...editData, merchantType: e.target.value });
+};
+
   return (
     <>
     <Modal
@@ -159,7 +169,7 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
 
           margin="normal"
         />
-         <TextField
+         {/* <TextField
           label="MerchantType"
           name="merchantType"
           value={editData.merchantType}
@@ -172,8 +182,29 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
           }}
 
           margin="normal"
-        />
-        
+        /> */}
+         <TextField
+          label="MerchantType"
+          name="merchantType"
+          value={editData.merchantType}
+          onChange={handleMerchantTypeChange}
+          fullWidth
+          select // Use select prop for dropdown menu
+          InputLabelProps={{
+            style: {
+              color: isDark ? "black" : "white",
+            },
+          }}
+          margin="normal"
+        >
+          {/* Dropdown options */}
+          <MenuItem value="Level 1">Level 1</MenuItem>
+          <MenuItem value="Level 2">Level 2</MenuItem>
+          <MenuItem value="Level 3">Level 3</MenuItem>
+          <MenuItem value="Level 4">Level 4</MenuItem>
+          <MenuItem value="MRM_Level 4">MRM_Level 4</MenuItem>
+
+        </TextField>
        
         
 
