@@ -219,14 +219,10 @@ function MrmScreen(){
               {params.row.status==true && <Button size="small" variant="contained" color="error" onClick={()=>formModal(params.row)}>
                 Fill Complaince Form
               </Button> }
-              
             </div>
           ),
-        },
-       
+        },  
       ];
-    
-
     return(
         <>
              <Box
@@ -378,23 +374,23 @@ function MrmScreen(){
                     },
                   }}
                   
-                  {...register("Screenshot", {
-                    required: "Screenshot  is required",
+                  // {...register("Screenshot", {
+                  //   required: "Screenshot  is required",
                     
-                  })}
-                  error={Boolean(errors.Screenshot)}
-                  helperText={
-                    <span
-                      style={{
-                        position: "absolute",
-                        color: "red",
-                        fontSize: "14px",
-                        marginLeft: "-10px",
-                      }}
-                    >
-                      {errors.Screenshot?.message}
-                    </span>
-                  }
+                  // })}
+                  // error={Boolean(errors.Screenshot)}
+                  // helperText={
+                  //   <span
+                  //     style={{
+                  //       position: "absolute",
+                  //       color: "red",
+                  //       fontSize: "14px",
+                  //       marginLeft: "-10px",
+                  //     }}
+                  //   >
+                  //     {errors.Screenshot?.message}
+                  //   </span>
+                  // }
                 /> 
                 
                
