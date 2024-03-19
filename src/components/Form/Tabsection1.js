@@ -20,6 +20,9 @@ import { toast, ToastContainer } from "react-toastify";
 import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import handleApprove from "../Service/patch";
+import { useContext } from "react";
+import { DarkContext } from "../../scenes/global/DarkBar";
+
 
 
 
@@ -49,6 +52,11 @@ const useStyles = makeStyles((theme) => ({
     color: "#333",
     fontWeight: "bold",
   },
+  accordionHeader1:{
+    backgroundColor:'black',
+    color:'white',
+    fontWeight:"bold"
+  },
 
   submitButton: {
     backgroundColor: "#4caf50",
@@ -65,8 +73,10 @@ const useStyles = makeStyles((theme) => ({
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const Tabsection1 = ({ onNext }) => { 
-  
+const Tabsection1 = ({ onNext }) => {
+  const { isDark } = useContext(DarkContext);
+  console.log("isDark", isDark);
+
   const [merchantExpanded, setMerchantExpanded] = useState(true); // State for Merchant Organization Information
   const [qsaExpanded, setQsaExpanded] = useState(true); // State for Qualified Security Assessor Information
   const [country, setCountry] = useState("India");
@@ -142,7 +152,7 @@ const Tabsection1 = ({ onNext }) => {
     executiveName: "",
     executiveTitle: "",
   });
-  
+
   console.log("executive", editExecutiveInformation)
 
   useEffect(() => {
@@ -267,12 +277,12 @@ const Tabsection1 = ({ onNext }) => {
     fetchData();
   }, []);
   console.log(formData, "fm");
-  
+
 
   const handleSubmitPost = async (e) => {
-    if(activeSubmit){
-           handleApprove(e);
-           return;
+    if (activeSubmit) {
+      handleApprove(e);
+      return;
     }
 
     try {
@@ -550,7 +560,7 @@ const Tabsection1 = ({ onNext }) => {
   };
 
 
-console.log("dit",editPaymentApplication)
+  console.log("dit", editPaymentApplication)
   const handleEditUpdateToggle = () => {
     if (isFormEditable && isReadyForUpdate) {
       patchModifiedFields(); // PATCH changes and update the UI state
@@ -977,7 +987,7 @@ console.log("dit",editPaymentApplication)
     <>
       <form onSubmit={handleSavepost}>
         <Box
-          sx={{ 
+          sx={{
             display: "flex",
             flexDirection: "column",
             "& > :not(style)": { m: 1 },
@@ -990,7 +1000,7 @@ console.log("dit",editPaymentApplication)
             sx={{ width: "100%", marginTop: "15px" }}
           >
             <AccordionSummary
-              className={classes.accordionHeader}
+              className={isDark?"classes.accordionHeader":"classes.accordionHeader1"}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="parent-panel-content"
               id="parent-panel-header"
@@ -999,6 +1009,7 @@ console.log("dit",editPaymentApplication)
                 variant="h5"
                 component="h1"
                 gutterBottom
+
                 sx={{ color: "text.secondary", my: 2 }}
               >
                 Part 1: Merchant and Qualified Security Assessor Information
@@ -1019,8 +1030,8 @@ console.log("dit",editPaymentApplication)
                   sx={accordionStyle}
                 >
                   <AccordionSummary
-                    className={classes.accordionHeader}
-                    expandIcon={<ExpandMoreIcon />}
+              className={isDark?"classes.accordionHeader":"classes.accordionHeader1"}
+              expandIcon={<ExpandMoreIcon />}
                     aria-controls="merchant-panel-content"
                     id="merchant-panel-header"
                   >
@@ -1170,7 +1181,7 @@ console.log("dit",editPaymentApplication)
                               ? editCountry
                               : country
                           }
-                          
+
                           inputlabelprops={{
                             shrink: true,
                           }}
@@ -1201,7 +1212,7 @@ console.log("dit",editPaymentApplication)
                             }}
                             required
                             label="State/Province"
-                            
+
                             onChange={
                               formData && formData.length > 0
                                 ? (e) => setEditState(e.target.value)
@@ -1332,7 +1343,7 @@ console.log("dit",editPaymentApplication)
         >
           <Accordion sx={{ width: "100%", marginTop: "15px" }}>
             <AccordionSummary
-              className={classes.accordionHeader}
+              className={isDark?"classes.accordionHeader":"classes.accordionHeader1"}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="executive-summary-content"
               id="executive-summary-header"
@@ -1353,8 +1364,8 @@ console.log("dit",editPaymentApplication)
                   onChange={handleAccordionChange("panelDescription")}
                 >
                   <AccordionSummary
-                    className={classes.accordionHeader}
-                    expandIcon={<ExpandMoreIcon />}
+              className={isDark?"classes.accordionHeader":"classes.accordionHeader1"}
+              expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2b-content"
                     id="panel2b-header"
                   >
@@ -1445,8 +1456,8 @@ console.log("dit",editPaymentApplication)
                   onChange={handleAccordionChange("panelLocations")}
                 >
                   <AccordionSummary
-                    className={classes.accordionHeader}
-                    expandIcon={<ExpandMoreIcon />}
+              className={isDark?"classes.accordionHeader":"classes.accordionHeader1"}
+              expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2b-content"
                     id="panel2b-header"
                   >
@@ -1465,17 +1476,23 @@ console.log("dit",editPaymentApplication)
                     corporate offices, data centers, call centers, etc.) and a
                     summary of locations included in the PCI DSS review.
                   </p>
-                  <AccordionDetails>
+                  <AccordionDetails
+
+                  >
                     <TableContainer component={Paper}>
                       <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
-                          <TableRow>
+                          <TableRow 
+                                        >
                             <TableCell
                               style={{
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 textAlign: "center",
+                                backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
                               }}
+
+
                             >
                               Type of facility
                             </TableCell>
@@ -1484,6 +1501,8 @@ console.log("dit",editPaymentApplication)
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 textAlign: "center",
+                                backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
+
                               }}
                               align="center"
                             >
@@ -1494,6 +1513,8 @@ console.log("dit",editPaymentApplication)
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 textAlign: "center",
+                                backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
+
                               }}
                               align="center"
                             >
@@ -1514,21 +1535,13 @@ console.log("dit",editPaymentApplication)
                                   }
                                   required
                                   placeholder="Eg-Retail outlets"
-                                  // value={row.type}
-                                  // value={
-                                  //   formData && formData[14]?.partResponse
-                                  //     ? JSON.parse(formData[14]?.partResponse)
-                                  //         ?.type || row.type
-                                  //     : row.type
-                                  // }
+                                  
                                   value={
                                     formData && formData.length > 0
                                       ? editFacilityData?.type
                                       : row.type
                                   }
-                                  inputlabelprops={{
-                                    shrink: true,
-                                  }}
+                                
                                   name="type"
                                   onChange={
                                     formData && formData.length > 0
@@ -1646,8 +1659,8 @@ console.log("dit",editPaymentApplication)
 
                 <Accordion>
                   <AccordionSummary
-                    className={classes.accordionHeader}
-                    expandIcon={<ExpandMoreIcon />}
+              className={isDark?"classes.accordionHeader":"classes.accordionHeader1"}
+              expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2d-content"
                     id="panel2d-header"
                   >
@@ -1681,6 +1694,8 @@ console.log("dit",editPaymentApplication)
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 textAlign: "center",
+                                backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
+
                               }}
                             >
                               Payment Application Name
@@ -1690,6 +1705,8 @@ console.log("dit",editPaymentApplication)
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 textAlign: "center",
+                                backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
+
                               }}
                             >
                               Version Number
@@ -1699,6 +1716,8 @@ console.log("dit",editPaymentApplication)
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 textAlign: "center",
+                                backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
+
                               }}
                             >
                               Application Vendor
@@ -1708,6 +1727,8 @@ console.log("dit",editPaymentApplication)
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 textAlign: "center",
+                                backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
+
                               }}
                             >
                               Is application PA-DSS Listed?
@@ -1717,6 +1738,8 @@ console.log("dit",editPaymentApplication)
                                 fontWeight: "bold",
                                 fontSize: "1rem",
                                 textAlign: "center",
+                                backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
+
                               }}
                             >
                               PA-DSS Listing Expiry date (if applicable)
@@ -1900,8 +1923,8 @@ console.log("dit",editPaymentApplication)
 
                 <Accordion>
                   <AccordionSummary
-                    className={classes.accordionHeader}
-                    expandIcon={<ExpandMoreIcon />}
+              className={isDark?"classes.accordionHeader":"classes.accordionHeader1"}
+              expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2e-content"
                     id="panel2e-header"
                   >
@@ -2062,8 +2085,8 @@ console.log("dit",editPaymentApplication)
 
                 <Accordion>
                   <AccordionSummary
-                    className={classes.accordionHeader}
-                    expandIcon={<ExpandMoreIcon />}
+              className={isDark?"classes.accordionHeader":"classes.accordionHeader1"}
+              expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2f-content"
                     id="panel2f-header"
                   >
@@ -2102,6 +2125,8 @@ console.log("dit",editPaymentApplication)
                                   fontWeight: "bold",
                                   fontSize: "1rem",
                                   textAlign: "center",
+                                  backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
+
                                 }}
                               >
                                 Name of service provider
@@ -2111,6 +2136,8 @@ console.log("dit",editPaymentApplication)
                                   fontWeight: "bold",
                                   fontSize: "1rem",
                                   textAlign: "center",
+                                  backgroundColor: isDark ? "white" :"rgba(20,27,45,255)",
+
                                 }}
                               >
                                 Description of services provided
@@ -2208,8 +2235,8 @@ console.log("dit",editPaymentApplication)
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3-content"
             id="panel3-header"
-            className={classes.accordionHeader}
-          >
+            className={isDark?"classes.accordionHeader":"classes.accordionHeader1"}
+            >
             <Typography
               variant="h5"
               component="h1"
@@ -2234,7 +2261,7 @@ console.log("dit",editPaymentApplication)
                 <div
                   style={{
                     display: "flex",
-                    flexDirection:'row',
+                    flexDirection: 'row',
                     // flexWrap:'wrap',
                     // flexDirection: "row",
                     // justifyContent: "space-between",

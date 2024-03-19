@@ -277,13 +277,13 @@ function MrmScreen(){
                     },
                   }}
                   {...register("leagalName", {
-                    required: "Name is required",
+                    required: "leagal Name is required",
                     pattern: {
                       value: /^[A-Za-z\s]+$/,
                       message: "Only alphabetical characters are allowed",
                     },
                   })}
-                  error={Boolean(errors.name)}
+                  error={Boolean(errors.leagalName)}
                   helperText={
                     <span
                       style={{
@@ -293,7 +293,7 @@ function MrmScreen(){
                         marginLeft: "-10px",
                       }}
                     >
-                      {errors.name?.message}
+                      {errors.leagalName?.message}
                     </span>
                   }
                 />
@@ -344,13 +344,13 @@ function MrmScreen(){
                     },
                   }}
                   {...register("dbaName", {
-                    required: "Name is required",
+                    required: "dbaName is required",
                     pattern: {
                       value: /^[A-Za-z\s]+$/,
                       message: "Only alphabetical characters are allowed",
                     },
                   })}
-                  error={Boolean(errors.name)}
+                  error={Boolean(errors.dbaName)}
                   helperText={
                     <span
                       style={{
@@ -360,7 +360,7 @@ function MrmScreen(){
                         marginLeft: "-10px",
                       }}
                     >
-                      {errors.name?.message}
+                      {errors.dbaName?.message}
                     </span>
                   }
                 />
@@ -369,14 +369,35 @@ function MrmScreen(){
                   variant="filled"
                   type="file"
                   accept="image/*"
+                  label="Sreenshot"
                   onChange={handleImage}
                   sx={{ gridColumn: "span 2" }}
                   InputLabelProps={{
+                    shrink: true,
+
                     style: {
+                      fontSize:'18px',
                       color: isDark ? "black" : "white",
                     },
                   }}
-                
+                  
+                  {...register("Screenshot", {
+                    required: "Screenshot  is required",
+                    
+                  })}
+                  error={Boolean(errors.Screenshot)}
+                  helperText={
+                    <span
+                      style={{
+                        position: "absolute",
+                        color: "red",
+                        fontSize: "14px",
+                        marginLeft: "-10px",
+                      }}
+                    >
+                      {errors.Screenshot?.message}
+                    </span>
+                  }
                 />
 
                
@@ -385,9 +406,7 @@ function MrmScreen(){
                 <Button type="submit" color="secondary" variant="contained"disabled={loading}>
                   Create New Merchant
                 </Button>
-                <Button variant="contained" color="secondary" onClick={()=>navigate("/hdfcForm")}>
-                  Hdfc Form
-                </Button>
+                
               </Box>
             </form>
           </AccordionDetails>
