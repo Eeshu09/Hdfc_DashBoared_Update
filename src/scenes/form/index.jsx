@@ -1,6 +1,4 @@
 
-
-
 import { Box, Button, TextField } from "@mui/material";
 import { Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -53,6 +51,16 @@ const Form = () => {
     setSelectImage(file);
 
   };
+
+   const downloadSample = () =>{
+
+   
+    const link = document.createElement('a');
+    link.href = 'https://docs.google.com/spreadsheets/d/1yaKpRxoFMeSHJDTGmurppAqWgKKhMoOx/edit?usp=drive_link&ouid=105055869191863737769&rtpof=true&sd=true';
+    link.download = 'merchant.xlsx';
+    link.click();
+
+   }
 
 
   const onSubmit = async (data) => {
@@ -423,8 +431,8 @@ const Form = () => {
                   </Button>
                 </Grid>
                 <Grid item xs={2} >
-                  <Button variant="contained" color="success" size="small">
-                    <DownloadIcon fontSize="large" />
+                  <Button variant="contained" color="success" size="small"  onClick={downloadSample}>
+                    <DownloadIcon fontSize="large"/>
                     Download Sample
                   </Button>
                 </Grid>
