@@ -87,14 +87,9 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
           toast.success("Data update Successfully",{
             position:'top-center'
           });
+          handleCancel();
           refetch();
-
         }
-        
-        // const result=await response.data;
-        // setLoading(false);
-       
-
     } catch (error) {
       toast.error("Something went wrong")
         console.error("Error editing merchant:", error);
@@ -200,7 +195,7 @@ const handleMerchantTypeChange = (e) => {
           <Button
             variant="contained"
             color="success"
-            onClick={() => handleEditSubmit(editData.email)}
+            onClick={() => handleEditSubmit(selectedItem.email)}
           >
            {loading?<CircularProgress size={20}/>:"Edit"}
           </Button>
