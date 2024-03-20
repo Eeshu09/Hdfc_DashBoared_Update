@@ -77,8 +77,10 @@ const Tabsection1 = ({ onNext }) => {
   const { isDark } = useContext(DarkContext);
   console.log("isDark", isDark);
 
-  const [merchantExpanded, setMerchantExpanded] = useState(true); // State for Merchant Organization Information
-  const [qsaExpanded, setQsaExpanded] = useState(true); // State for Qualified Security Assessor Information
+  console.log("fid Mid",mId,fId)
+
+  const [merchantExpanded, setMerchantExpanded] = useState(true); 
+  const [qsaExpanded, setQsaExpanded] = useState(true); 
   const [country, setCountry] = useState("India");
   const [state, setState] = useState("");
   const [parentAccordionExpanded, setParentAccordionExpanded] = useState(true);

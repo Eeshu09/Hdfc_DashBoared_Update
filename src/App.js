@@ -18,7 +18,6 @@ import MerchantForm from "./scenes/MerchantList/MerchantForm";
 import FormInfo from "./scenes/MerchantList/FormInfo";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./utils/ProtectedRoute";
-import Pdf from "./components/pdf/pdf";
 import MrmScreen from "./scenes/MrmScreen/MrmScreen";
 import MerchantApproval from "./scenes/MerchantApproval/MerchantApproval";
 import MerchantLog from "./scenes/logs/MerchantLog";
@@ -35,24 +34,21 @@ function App() {
 
 
  
-  useEffect(() => {
-  const checkAuthentication = async () => {
-    try {
-      if(MrmEmail && !storedUserId){
-        navigate('/mrm')
-      }
-
-      else if (!storedUserId ) {
-        await navigate("/");
-      }
-    } catch (error) {
-      console.error("Error occurred while checking authentication:", error);
-    }
-  };
-
-  checkAuthentication();  
-
-}, [storedUserId, navigate]);
+//   useEffect(() => {
+//   const checkAuthentication = async () => {
+//     try {
+//       if(MrmEmail && !storedUserId){
+//         navigate('/mrm')
+//       }
+//       else if (!storedUserId ) {
+//         await navigate("/");
+//       }
+//     } catch (error) {
+//       console.error("Error occurred while checking authentication:", error);
+//     }
+//   };
+//   checkAuthentication();  
+// }, [storedUserId, navigate]);
 
   const isLoginPage = window.location.pathname === "/";
   const isForgetPassword = window.location.pathname === "/reset-password";
@@ -73,7 +69,6 @@ const isHdfcForm = window.location.pathname === "/hdfcForm";
             {!isLoginPage && !isPdf  && <Topbar setIsSidebar={setIsSidebar} />}
             <Routes>
               <Route path="/" element={<Login />} />
-
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/merchantList" element={<MerchantList />} />
               <Route path="/form" element={<Form />} />
@@ -85,16 +80,14 @@ const isHdfcForm = window.location.pathname === "/hdfcForm";
               <Route path="bulkupload" element={<Bulkupload />} />
               <Route path="merchantForm" element={<MerchantForm />} />
               <Route path="formInformation" element={<FormInfo />} />
-              <Route path="/pdf" element={<Pdf/>}/>
-              <Route path="/mrm" element={<MrmScreen/>}/>
               <Route path="merchantApproval" element={<MerchantApproval/>}/>
               <Route path="/merchantLog" element={<MerchantLog/>}/>
               <Route path="/adminLog" element={<AdminLog/>}/>
+              <Route path="/mrm" element={<MrmScreen/>}/>
               <Route path ="/hdfcForm" element={<Mainform/>}/>
             </Routes>
           </main>
         </div>
-        {/* <ToastContainer position="top-center" /> */}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

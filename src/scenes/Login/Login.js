@@ -48,29 +48,27 @@ export default function Login() {
   const storedUserId = sessionStorage.getItem("userId");
   const  AdminEmail=sessionStorage.getItem("MrmEmail");
  
-  useEffect(() => {
-  const checkAuthentication = async () => {
-    try {
-      if (storedUserId) {
-        await navigate("/DashBoard");
-      }
-    } catch (error) {
-      console.error("Error occurred while checking authentication:", error);
-    }
-  };
+//   useEffect(() => {
+//   const checkAuthentication = async () => {
+//     try {
+//       if (storedUserId) {
+//         await navigate("/DashBoard");
+//       }
+//     } catch (error) {
+//       console.error("Error occurred while checking authentication:", error);
+//     }
+//   };
 
-  checkAuthentication();  
+//   checkAuthentication();  
 
-}, [storedUserId, navigate]);
+// }, [storedUserId, navigate]);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const [authChecked, setAuthChecked] = useState(false); // State to track if authentication check is completed
-
-  
+  const [authChecked, setAuthChecked] = useState(false); 
 
   const [res, setRes] = useState("");
   const [loading, setLoading] = useState(false);

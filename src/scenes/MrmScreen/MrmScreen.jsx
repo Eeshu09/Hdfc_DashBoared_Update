@@ -2,7 +2,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../../components/Header";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -32,6 +31,7 @@ import Table from "../../components/Table";
 import FormComplanceModal from "../../components/Modal/FormComplanceModal";
 import { useNavigate } from "react-router-dom";
 import { SelectAllOutlined } from "@mui/icons-material";
+import Header from "../../components/Header";
 
 
 function MrmScreen(){ 
@@ -226,11 +226,17 @@ function MrmScreen(){
     return(
         <>
              <Box
-        m="20px"
+        m="35px 12px 12px 12px"
         sx={{
           transition: "margin-left 0.3s",
         }}
       >
+        <Box
+          className="header"
+          style={{ backgroundColor: isDark ? "#fcfcfc" : "#111b2d",height:"50px"}}
+        >
+          <Header />
+        </Box>
         <Accordion
           defaultExpanded
           style={{ backgroundColor: isDark ? "white" : "rgba(20,27,45,255)" }}

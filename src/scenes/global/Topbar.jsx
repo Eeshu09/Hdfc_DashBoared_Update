@@ -10,16 +10,27 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { DarkContext } from "./DarkBar";
+import LogoutIcon from '@mui/icons-material/Logout';
+import MrmScreen from "../MrmScreen/MrmScreen";
+import { useNavigate } from "react-router-dom";
 const Topbar = () => {
+  const navigate=useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   const { isDark, SetIsDark } = useContext(DarkContext);
 
+  const mrmScreen = window.location.pathname === "/mrm";
+
   const handleIconClick = () => {
-    colorMode.toggleColorMode(); // Toggle the color mode using the ColorModeContext
-    SetIsDark(!isDark); // Toggle the isDark value using the DarkContext
+    colorMode.toggleColorMode(); 
+    SetIsDark(!isDark); 
   };
+  const handleLogOut=()=>{
+    sessionStorage.clear();
+    navigate('/')
+
+  }
 
   return (
     <Box display="flex" justifyContent="flex-end" p={2}>
@@ -36,24 +47,20 @@ const Topbar = () => {
       <Box
         style={{
           position: "fixed",
-          top: "15px",
+          top: "12px",
           zIndex: "2000",
-
           backgroundColor: isDark ? "#fcfcfc" : "#111b2d",
         }}
       >
-        <IconButton onClick={handleIconClick}>
+        
+        <IconButton onClick={handleIconClick} >
+          
           {isDark ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
         </IconButton>
-        {/* <IconButton>
-          <NotificationsOutlinedIcon />
+        <IconButton onClick={handleLogOut}>
+        {mrmScreen && <LogoutIcon/>}
         </IconButton>
-        <IconButton>
-          <SettingsOutlinedIcon />
-        </IconButton>
-        <IconButton>
-          <PersonOutlinedIcon />
-        </IconButton> */}
+        
       </Box>
     </Box>
   );

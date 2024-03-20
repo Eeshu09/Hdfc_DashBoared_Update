@@ -29,6 +29,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 const Form = () => {
   const AdminId = sessionStorage.getItem("userId");
   const AdminEmail=sessionStorage.getItem('AdminEmail')
+  console.log(AdminEmail,AdminId);
   const { isDark } = useContext(DarkContext);
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { isCollapsed } = useContext(SidebarContext);
@@ -51,17 +52,30 @@ const Form = () => {
     setSelectImage(file);
 
   };
-
   const downloadSample = () => {
-    const downloadUrl = 'https://docs.google.com/spreadsheets/d/1yaKpRxoFMeSHJDTGmurppAqWgKKhMoOx/edit?usp=drive_link&ouid=105055869191863737769&rtpof=true&sd=true'; // 
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.download = 'merchant.xlsx';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const localhostUrl = "http://localhost:5000/sample.xlsx";
+    const awsUrl = "http://hdfc-admin-dashboard.s3-website.ap-south-1.amazonaws.com/sample.xlsx";
+    
+    const isLocalhost = window.location.href.includes("localhost");
+    const url = isLocalhost ? localhostUrl : awsUrl;
+    const fileName = url.split("/").pop();
+  
+    fetch(url)
+      .then(response => response.blob())
+      .then(blob => {
+        const blobUrl = URL.createObjectURL(blob);
+        const aTag = document.createElement("a");
+        aTag.href = blobUrl;
+        aTag.setAttribute("download", fileName);
+        document.body.appendChild(aTag);
+        aTag.click();
+        document.body.removeChild(aTag);
+        URL.revokeObjectURL(blobUrl); 
+      })
+      .catch(error => {
+        console.error("Error downloading file:", error);
+      });
   };
-
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -309,23 +323,23 @@ const Form = () => {
                       color: isDark ? "black" : "white",
                     },
                   }}
-                  {...register("ScreenShot", {
-                    required: "ScreenShot is required",
+                  // {...register("ScreenShot", {
+                  //   required: "ScreenShot is required",
                    
-                  })}
-                  error={Boolean(errors.ScreenShot)}
-                  helperText={
-                    <span
-                      style={{
-                        position: "absolute",
-                        color: "red",
-                        fontSize: "14px",
-                        marginLeft: "-10px",
-                      }}
-                    >
-                      {errors.ScreenShot?.message}
-                    </span>
-                  }
+                  // })}
+                  // error={Boolean(errors.ScreenShot)}
+                  // helperText={
+                  //   <span
+                  //     style={{
+                  //       position: "absolute",
+                  //       color: "red",
+                  //       fontSize: "14px",
+                  //       marginLeft: "-10px",
+                  //     }}
+                  //   >
+                  //     {errors.ScreenShot?.message}
+                  //   </span>
+                  // }
                 />
 
                 <Box sx={{ gridColumn: "span 2" }}>
