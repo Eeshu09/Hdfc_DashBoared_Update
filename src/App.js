@@ -29,21 +29,30 @@ function App() {
   const [isSidebar, setIsSidebar] = useState(true);
   const navigate = useNavigate();
   const storedUserId = sessionStorage.getItem("userId");
+  const  AdminEmail=sessionStorage.getItem("AdminEmail");
+  const MrmEmail=sessionStorage.getItem("MrmEmail");
+
+
+
  
-//   useEffect(() => {
-//   const checkAuthentication = async () => {
-//     try {
-//       if (!storedUserId) {
-//         await navigate("/");
-//       }
-//     } catch (error) {
-//       console.error("Error occurred while checking authentication:", error);
-//     }
-//   };
+  useEffect(() => {
+  const checkAuthentication = async () => {
+    try {
+      if(MrmEmail && !storedUserId){
+        navigate('/mrm')
+      }
 
-//   checkAuthentication();  
+      else if (!storedUserId ) {
+        await navigate("/");
+      }
+    } catch (error) {
+      console.error("Error occurred while checking authentication:", error);
+    }
+  };
 
-// }, [storedUserId, navigate]);
+  checkAuthentication();  
+
+}, [storedUserId, navigate]);
 
   const isLoginPage = window.location.pathname === "/";
   const isForgetPassword = window.location.pathname === "/reset-password";

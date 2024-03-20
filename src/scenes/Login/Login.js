@@ -42,13 +42,31 @@ function a11yProps(index) {
   };
 }
 
-export default function Login() {
+export default function Login() { 
+  const navigate = useNavigate();
+
+  const storedUserId = sessionStorage.getItem("userId");
+  const  AdminEmail=sessionStorage.getItem("MrmEmail");
+ 
+  useEffect(() => {
+  const checkAuthentication = async () => {
+    try {
+      if (storedUserId) {
+        await navigate("/DashBoard");
+      }
+    } catch (error) {
+      console.error("Error occurred while checking authentication:", error);
+    }
+  };
+
+  checkAuthentication();  
+
+}, [storedUserId, navigate]);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const navigate = useNavigate();
 
   const [authChecked, setAuthChecked] = useState(false); // State to track if authentication check is completed
 

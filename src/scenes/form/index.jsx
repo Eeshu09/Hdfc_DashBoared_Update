@@ -53,7 +53,7 @@ const Form = () => {
   };
 
   const downloadSample = () => {
-    const downloadUrl = 'https://docs.google.com/spreadsheets/d/1yaKpRxoFMeSHJDTGmurppAqWgKKhMoOx/edit?usp=drive_link&ouid=105055869191863737769&rtpof=true&sd=true'; // Replace this URL with the actual hosted file URL
+    const downloadUrl = 'https://docs.google.com/spreadsheets/d/1yaKpRxoFMeSHJDTGmurppAqWgKKhMoOx/edit?usp=drive_link&ouid=105055869191863737769&rtpof=true&sd=true'; // 
     const link = document.createElement('a');
     link.href = downloadUrl;
     link.download = 'merchant.xlsx';

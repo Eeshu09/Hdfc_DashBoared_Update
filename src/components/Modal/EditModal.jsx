@@ -67,11 +67,7 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
               op: "replace",
               // from: "string",
               value:editData?.merchantType, 
-            },
-           
-           
-           
-            
+            },    
         ];
 
         const response = await axios.patch(
