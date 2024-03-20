@@ -52,15 +52,15 @@ const Form = () => {
 
   };
 
-   const downloadSample = () =>{
-
-   
+  const downloadSample = () => {
+    const downloadUrl = 'https://docs.google.com/spreadsheets/d/1yaKpRxoFMeSHJDTGmurppAqWgKKhMoOx/edit?usp=drive_link&ouid=105055869191863737769&rtpof=true&sd=true'; // Replace this URL with the actual hosted file URL
     const link = document.createElement('a');
-    link.href = 'https://docs.google.com/spreadsheets/d/1yaKpRxoFMeSHJDTGmurppAqWgKKhMoOx/edit?usp=drive_link&ouid=105055869191863737769&rtpof=true&sd=true';
+    link.href = downloadUrl;
     link.download = 'merchant.xlsx';
+    document.body.appendChild(link);
     link.click();
-
-   }
+    document.body.removeChild(link);
+  };
 
 
   const onSubmit = async (data) => {
@@ -130,10 +130,15 @@ const Form = () => {
     }
     try {
       formData.append("file", selectedFile);
+      console.log("Selecteifle",selectedFile);
 
       const response = await axios.post(
-        `${BASE_URL}BulkUploadMerchan`,
-        formData,
+        `${BASE_URL}BulkUploadMerchant`,
+        formData,{
+          params:{
+        AdminId:AdminId
+          }
+        },
         {
           headers: {
             "Content-Type": "multipart/form-data",

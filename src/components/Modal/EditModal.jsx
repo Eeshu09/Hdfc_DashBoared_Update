@@ -9,6 +9,7 @@ import { DarkContext } from "../../scenes/global/DarkBar";
 function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseModal,refetch }) { 
   const[loading,setLoading]=useState(false);
   console.log("selectedIntem",selectedItem);
+  // const [mainEmail,setMainEmail]=useState('');
 
   const [editData, setEditData] = useState({
     
@@ -23,7 +24,7 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
          leagalName:selectedItem?.leagalName,
          merchantType:selectedItem?.merchantType,
          dbaName:selectedItem?.dbaName,
-         email:selectedItem?.email
+         email:selectedItem?.email,
     })
 
   },[selectedItem])
@@ -38,7 +39,7 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
     handleCloseModal();
   }
 
-  const handleEditSubmit = async () => { 
+  const handleEditSubmit = async (email) => { 
     setLoading(true);
     try {
         const patchData = [
@@ -77,7 +78,7 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
             `${BASE_URL}PatchMerchant`,
             patchData,{
               params:{
-                Email:editData.email
+                Email:email
               },
             }
         );
@@ -169,27 +170,14 @@ const handleMerchantTypeChange = (e) => {
 
           margin="normal"
         />
-         {/* <TextField
-          label="MerchantType"
-          name="merchantType"
-          value={editData.merchantType}
-          onChange={(e) => setEditData({ ...editData, [e.target.name]: e.target.value })}
-          fullWidth
-          InputLabelProps={{
-            style: {
-              color: isDark ? "black" : "white",
-            },
-          }}
-
-          margin="normal"
-        /> */}
+         
          <TextField
           label="MerchantType"
           name="merchantType"
           value={editData.merchantType}
           onChange={handleMerchantTypeChange}
           fullWidth
-          select // Use select prop for dropdown menu
+          select 
           InputLabelProps={{
             style: {
               color: isDark ? "black" : "white",
