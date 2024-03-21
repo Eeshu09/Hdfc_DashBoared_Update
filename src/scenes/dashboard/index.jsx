@@ -313,97 +313,9 @@ const Dashboard = () => {
             </Box>
           </Box>
 
-          {/* ROW 3 */}
-
-          {/* <Box
-            gridColumn="span 12"
-            gridRow="span 2"
-            position="relative"
-            overflow="auto"
-            backgroundColor={colors.primary[400]}
-          >
-            <Typography
-              variant="h4"
-              fontWeight="700"
-              
-              padding='auto'
-              position="sticky"
-              top="0"
-              zIndex="1"
-              backgroundColor="#2e7c67"
-              width="100%"
-              paddingLeft="10px"
-              paddingRight="10px"
-              height={30}
-            >
-              New Merchant
-            </Typography>
-            {notMatchingData.length === 0 ? (
-              <Typography variant="h5" mt={2} ml={2} color="textSecondary"style={{textAlign:'center'}}>
-                No data found
-              </Typography>
-            ) : (
-              notMatchingData.map((newItem, index) => (
-                <Box
-                  key={index}
-                  display="flex"
-                  flexDirection="row"
-                  alignItems="center"
-                  justifyContent="space-between"
-                >
-                  <Typography variant="h5" ml="10px">
-                    {newItem.leagalName}
-                  </Typography>
-                  <Typography>{newItem.merchantID}</Typography>
-
-                  <Box display="flex" marginTop="25px">
-                    <IconButton>
-                      <DownloadOutlinedIcon
-                        sx={{
-                          fontSize: "26px",
-                          color: colors.greenAccent[500],
-                          marginTop: "-7px"
-                        }}
-                        onClick={() => handlePdf(newItem)}
-                      />
-                    </IconButton>
-                    <Button
-                      size="small"
-                      variant="contained"
-                      sx={{
-                        fontSize: "15px",
-                        marginRight: "10px",
-                        height: "35px",
-                        color: colors.greenAccent[500]
-                      }}
-                      onClick={(e) => handlePopoverOpen(e, newItem, "approve")}
-                    >
-                      approve
-                    </Button>
-                    <Button
-                      variant="contained"
-                      sx={{
-                        fontSize: "15px",
-                        marginRight: "10px",
-                        height: "35px",
-                        color: colors.greenAccent[500]
-                      }}
-                      onClick={(e) => handlePopoverOpen(e, newItem, "disapprove")}
-                    >
-                      disapprove
-                    </Button>
-                  </Box>
-                </Box>
-              ))
-
-            
-            )}
-
-          </Box> */}
           
         </Box>
 
-        <ApproveModal anchorEl={anchorEl} rowData={selectedItem} app={app} handlePopoverClose={handlePopoverClose} />
        
         <ToastContainer />
       </Box>

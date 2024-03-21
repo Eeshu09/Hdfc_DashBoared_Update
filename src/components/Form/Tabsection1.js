@@ -205,14 +205,27 @@ if (mId && fId) {
       });
     }
 
+    // if (formData && Array.isArray(formData) && formData.length > 0) {
+    //   const facilityItem =
+    //     formData.find((item) => item.partName === "Facility 1");
+    //   if (facilityItem) {
+    //     const facilityObject = JSON.parse(facilityItem.partResponse);
+    //     setEditFacilityData(facilityObject);
+    //   }
+    // }
     if (formData && Array.isArray(formData) && formData.length > 0) {
-      const facilityItem =
-        formData.find((item) => item.partName === "Facility 1");
+      const facilityItem = formData.find((item) => item.partName === "Facility 1");
       if (facilityItem) {
-        const facilityObject = JSON.parse(facilityItem.partResponse);
-        setEditFacilityData(facilityObject);
+        try {
+          const facilityObject = JSON.parse(facilityItem.partResponse);
+          setEditFacilityData(facilityObject);
+        } catch (error) {
+          console.error("Error parsing JSON:", error);
+          // Handle the error gracefully, such as setting default data or showing a message to the user
+        }
       }
     }
+    
     console.log("editfacility", editFacilityData);
     if (formData && Array.isArray(formData) && formData.length > 0) {
       const paymentApplication =
@@ -226,15 +239,29 @@ if (mId && fId) {
         setEditPaymentApplication(paymentApplicationObject);
       }
     }
-    if (formData && Array.isArray(formData) && formData.length > 0) {
-      const serviceProvider =
+    // if (formData && Array.isArray(formData) && formData.length > 0) {
+    //   const serviceProvider =
 
-        formData.find((item) => item.partName === "Service Provider 1");
+    //     formData.find((item) => item.partName === "Service Provider 1");
+    //   if (serviceProvider) {
+    //     // Parse the JSON string from partResponse to an object
+    //     const serviceProviderObject = JSON.parse(serviceProvider.partResponse);
+    //     // Set the parsed object to state
+    //     setEditServiceProvider(serviceProviderObject);
+    //   }
+    // }
+    if (formData && Array.isArray(formData) && formData.length > 0) {
+      const serviceProvider = formData.find((item) => item.partName === "Service Provider 1");
       if (serviceProvider) {
-        // Parse the JSON string from partResponse to an object
-        const serviceProviderObject = JSON.parse(serviceProvider.partResponse);
-        // Set the parsed object to state
-        setEditServiceProvider(serviceProviderObject);
+        try {
+          // Parse the JSON string from partResponse to an object
+          const serviceProviderObject = JSON.parse(serviceProvider.partResponse);
+          // Set the parsed object to state
+          setEditServiceProvider(serviceProviderObject);
+        } catch (error) {
+          console.error("Error parsing JSON:", error);
+          // Handle the error gracefully, such as setting default data or showing a message to the user
+        }
       }
     }
     if (formData && Array.isArray(formData) && formData.length > 0) {
@@ -332,187 +359,187 @@ if (mId && fId) {
       });
     }
 
-    if (editDba !== formData[1]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editDba,
-        partName: formData[1].partName,
-      });
-    }
+    // if (editDba !== formData[1]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editDba,
+    //     partName: formData[1].partName,
+    //   });
+    // }
 
-    if (editContactName !== formData[2]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editContactName,
-        partName: formData[2].partName,
-      });
-    }
+    // if (editContactName !== formData[2]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editContactName,
+    //     partName: formData[2].partName,
+    //   });
+    // }
 
-    if (editTitle !== formData[3]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editTitle,
-        partName: formData[3].partName,
-      });
-    }
+    // if (editTitle !== formData[3]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editTitle,
+    //     partName: formData[3].partName,
+    //   });
+    // }
 
-    if (editTelephone !== formData[4]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editTelephone,
-        partName: formData[4].partName,
-      });
-    }
+    // if (editTelephone !== formData[4]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editTelephone,
+    //     partName: formData[4].partName,
+    //   });
+    // }
 
-    if (editEmail !== formData[5]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editEmail,
-        partName: formData[5].partName,
-      });
-    }
+    // if (editEmail !== formData[5]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editEmail,
+    //     partName: formData[5].partName,
+    //   });
+    // }
 
-    if (editCountry !== formData[6]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editCountry,
-        partName: formData[6].partName,
-      });
-    }
-    if (editState !== formData[7]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editState,
-        partName: formData[7].partName,
-      });
-    }
-    if (editCity !== formData[8]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editCity,
-        partName: formData[8].partName,
-      });
-    }
-    if (editUrl !== formData[9]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editUrl,
-        partName: formData[9].partName,
-      });
-    }
-    if (editPincode !== formData[10]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editPincode,
-        partName: formData[10].partName,
-      });
-    }
-    if (editBusinessAddress !== formData[11]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editBusinessAddress,
-        partName: formData[11].partName,
-      });
-    }
-    if (editTransactionHandler !== formData[12]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editTransactionHandler,
-        partName: formData[12].partName,
-      });
-    }
-    if (editCardDetails !== formData[13]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editCardDetails,
-        partName: formData[13].partName,
-      });
-    }
-    if (editFacilityData !== formData[14]?.partResponse) {
-      const st = JSON.stringify(editFacilityData);
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: st,
-        partName: formData[14].partName
-      })
-    }
-    if (editPaymentApplication !== formData[15]?.partResponse) {
-      const st = JSON.stringify(editPaymentApplication);
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: st,
-        partName: formData[15].partName
-      })
-    }
+    // if (editCountry !== formData[6]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editCountry,
+    //     partName: formData[6].partName,
+    //   });
+    // }
+    // if (editState !== formData[7]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editState,
+    //     partName: formData[7].partName,
+    //   });
+    // }
+    // if (editCity !== formData[8]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editCity,
+    //     partName: formData[8].partName,
+    //   });
+    // }
+    // if (editUrl !== formData[9]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editUrl,
+    //     partName: formData[9].partName,
+    //   });
+    // }
+    // if (editPincode !== formData[10]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editPincode,
+    //     partName: formData[10].partName,
+    //   });
+    // }
+    // if (editBusinessAddress !== formData[11]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editBusinessAddress,
+    //     partName: formData[11].partName,
+    //   });
+    // }
+    // if (editTransactionHandler !== formData[12]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editTransactionHandler,
+    //     partName: formData[12].partName,
+    //   });
+    // }
+    // if (editCardDetails !== formData[13]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editCardDetails,
+    //     partName: formData[13].partName,
+    //   });
+    // }
+    // if (editFacilityData !== formData[14]?.partResponse) {
+    //   const st = JSON.stringify(editFacilityData);
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: st,
+    //     partName: formData[14].partName
+    //   })
+    // }
+    // if (editPaymentApplication !== formData[15]?.partResponse) {
+    //   const st = JSON.stringify(editPaymentApplication);
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: st,
+    //     partName: formData[15].partName
+    //   })
+    // }
 
 
-    if (editMerchantUrl !== formData[16]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editMerchantUrl,
-        partName: formData[16].partName,
-      });
-    }
-    if (editErpName !== formData[17]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editErpName,
-        partName: formData[17].partName,
-      });
-    }
-    if (editPaymentGateway !== formData[18]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editPaymentGateway,
-        partName: formData[18].partName,
-      });
-    }
-    if (editThirdServiceProvider !== formData[19]?.partResponse) {
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: editThirdServiceProvider,
-        partName: formData[19].partName,
-      });
-    }
-    if (editServiceProvider !== formData[20]?.partResponse) {
-      const st = JSON.stringify(editServiceProvider);
+    // if (editMerchantUrl !== formData[16]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editMerchantUrl,
+    //     partName: formData[16].partName,
+    //   });
+    // }
+    // if (editErpName !== formData[17]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editErpName,
+    //     partName: formData[17].partName,
+    //   });
+    // }
+    // if (editPaymentGateway !== formData[18]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editPaymentGateway,
+    //     partName: formData[18].partName,
+    //   });
+    // }
+    // if (editThirdServiceProvider !== formData[19]?.partResponse) {
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: editThirdServiceProvider,
+    //     partName: formData[19].partName,
+    //   });
+    // }
+    // if (editServiceProvider !== formData[20]?.partResponse) {
+    //   const st = JSON.stringify(editServiceProvider);
 
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: st,
-        partName: formData[20].partName,
-      });
-    }
-    if (editExecutiveInformation !== formData[21]?.partResponse) {
-      const st = JSON.stringify(editExecutiveInformation);
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: st,
+    //     partName: formData[20].partName,
+    //   });
+    // }
+    // if (editExecutiveInformation !== formData[21]?.partResponse) {
+    //   const st = JSON.stringify(editExecutiveInformation);
 
-      patchData.push({
-        path: "/partResponse",
-        op: "replace",
-        value: st,
-        partName: formData[21].partName,
-      });
-    }
+    //   patchData.push({
+    //     path: "/partResponse",
+    //     op: "replace",
+    //     value: st,
+    //     partName: formData[21].partName,
+    //   });
+    // }
 
 
     if (patchData.length > 0) {
@@ -2364,7 +2391,7 @@ if (mId && fId) {
                       />
                     </Box>
                     {/* <Box sx={{justifyContent:'flex-start'}}> */}
-                    <Signature />
+                    <Signature fId={fId} mId={mId} />
 
                     {/* </Box> */}
                   </Box>

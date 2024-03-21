@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-export default function Sign() {
+export default function Sign({fId,mId}) {
   const [apiImage, setApiImage] = useState(null);
   const [signatureImage, setSignatureImage] = useState(null);
   const [UpdateImage, setUpdateImage] = useState("");
@@ -40,25 +40,49 @@ export default function Sign() {
 
   // getImageFromAPi
 
+  // useEffect(() => {
+  //   const fetchImage = async () => {
+  //     const apiurl = `${apiUrl}ImageUpload/GetImage?formId=${fId}&merchantId=${mId}`;
+
+  //     try {
+  //       const response = await fetch(apiurl);
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! Status: ${response.status}`);
+  //       }
+  //       const blob = await response.blob();
+  //       const imageUrl = URL.createObjectURL(blob);
+  //       setApiImage(imageUrl);
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //     }
+  //   };
+
+  //   fetchImage();
+  // }, []);
+  
   useEffect(() => {
     const fetchImage = async () => {
       const apiurl = `${apiUrl}ImageUpload/GetImage?formId=${fId}&merchantId=${mId}`;
 
       try {
         const response = await fetch(apiurl);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+        if (response.ok) {
+          const blob = await response.blob();
+          const imageUrl = URL.createObjectURL(blob);
+          setApiImage(imageUrl);
+        } else {
+          console.error(`HTTP error! Status: ${response.status}`);
+          // Handle error without showing toast
         }
-        const blob = await response.blob();
-        const imageUrl = URL.createObjectURL(blob);
-        setApiImage(imageUrl);
       } catch (error) {
         console.error("Error:", error);
+        // Handle error without showing toast
       }
     };
 
     fetchImage();
   }, []);
+
 console.log("fid",mId,fId);
   const handleSignatureChange = (event) => {
     if (event.target.files.length > 0) {
