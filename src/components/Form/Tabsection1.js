@@ -354,192 +354,192 @@ if (mId && fId) {
         path: "/partResponse",
         op: "replace",
         value: editCompanyName,
-        partName: formData[0].partName,
+        partName:"Company Name",
 
       });
     }
 
-    // if (editDba !== formData[1]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editDba,
-    //     partName: formData[1].partName,
-    //   });
-    // }
+    if (editDba !== formData[1]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editDba,
+        partName:"DBA",
+      });
+    }
 
-    // if (editContactName !== formData[2]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editContactName,
-    //     partName: formData[2].partName,
-    //   });
-    // }
+    if (editContactName !== formData[2]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editContactName,
+        partName:"Contact Name",
+      });
+    }
 
-    // if (editTitle !== formData[3]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editTitle,
-    //     partName: formData[3].partName,
-    //   });
-    // }
+    if (editTitle !== formData[3]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editTitle,
+        partName:"Title",
+      });
+    }
 
-    // if (editTelephone !== formData[4]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editTelephone,
-    //     partName: formData[4].partName,
-    //   });
-    // }
+    if (editTelephone !== formData[4]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editTelephone,
+        partName:"Telephone",
+      });
+    }
 
-    // if (editEmail !== formData[5]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editEmail,
-    //     partName: formData[5].partName,
-    //   });
-    // }
+    if (editEmail !== formData[5]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editEmail,
+        partName:"E-mail",
+      });
+    }
 
-    // if (editCountry !== formData[6]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editCountry,
-    //     partName: formData[6].partName,
-    //   });
-    // }
-    // if (editState !== formData[7]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editState,
-    //     partName: formData[7].partName,
-    //   });
-    // }
-    // if (editCity !== formData[8]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editCity,
-    //     partName: formData[8].partName,
-    //   });
-    // }
-    // if (editUrl !== formData[9]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editUrl,
-    //     partName: formData[9].partName,
-    //   });
-    // }
-    // if (editPincode !== formData[10]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editPincode,
-    //     partName: formData[10].partName,
-    //   });
-    // }
-    // if (editBusinessAddress !== formData[11]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editBusinessAddress,
-    //     partName: formData[11].partName,
-    //   });
-    // }
-    // if (editTransactionHandler !== formData[12]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editTransactionHandler,
-    //     partName: formData[12].partName,
-    //   });
-    // }
-    // if (editCardDetails !== formData[13]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editCardDetails,
-    //     partName: formData[13].partName,
-    //   });
-    // }
-    // if (editFacilityData !== formData[14]?.partResponse) {
-    //   const st = JSON.stringify(editFacilityData);
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: st,
-    //     partName: formData[14].partName
-    //   })
-    // }
-    // if (editPaymentApplication !== formData[15]?.partResponse) {
-    //   const st = JSON.stringify(editPaymentApplication);
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: st,
-    //     partName: formData[15].partName
-    //   })
-    // }
+    if (editCountry !== formData[6]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editCountry,
+        partName:"Country",
+      });
+    }
+    if (editState !== formData[7]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editState,
+        partName:"State/Province",
+      });
+    }
+    if (editCity !== formData[8]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editCity,
+        partName:"City"
+      });
+    }
+    if (editUrl !== formData[9]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editUrl,
+        partName:"URL",
+      });
+    }
+    if (editPincode !== formData[10]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editPincode,
+        partName:"Pincode",
+      });
+    }
+    if (editBusinessAddress !== formData[11]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editBusinessAddress,
+        partName:"Business Address",
+      });
+    }
+    if (editTransactionHandler !== formData[12]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editTransactionHandler,
+        partName:"Transaction Handler",
+      });
+    }
+    if (editCardDetails !== formData[13]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editCardDetails,
+        partName:"Card Details Entry",
+      });
+    }
+    if (editFacilityData !== formData[14]?.partResponse) {
+      const st = JSON.stringify(editFacilityData);
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: st,
+        partName: formData[14].partName
+      })
+    }
+    if (editPaymentApplication !== formData[15]?.partResponse) {
+      const st = JSON.stringify(editPaymentApplication);
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: st,
+        partName:"Payment Application 1"
+      })
+    }
 
 
-    // if (editMerchantUrl !== formData[16]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editMerchantUrl,
-    //     partName: formData[16].partName,
-    //   });
-    // }
-    // if (editErpName !== formData[17]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editErpName,
-    //     partName: formData[17].partName,
-    //   });
-    // }
-    // if (editPaymentGateway !== formData[18]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editPaymentGateway,
-    //     partName: formData[18].partName,
-    //   });
-    // }
-    // if (editThirdServiceProvider !== formData[19]?.partResponse) {
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: editThirdServiceProvider,
-    //     partName: formData[19].partName,
-    //   });
-    // }
-    // if (editServiceProvider !== formData[20]?.partResponse) {
-    //   const st = JSON.stringify(editServiceProvider);
+    if (editMerchantUrl !== formData[16]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editMerchantUrl,
+        partName:"Merchant's Website URL",
+      });
+    }
+    if (editErpName !== formData[17]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editErpName,
+        partName:"ERP Name",
+      });
+    }
+    if (editPaymentGateway !== formData[18]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editPaymentGateway,
+        partName:"Payment Gateway",
+      });
+    }
+    if (editThirdServiceProvider !== formData[19]?.partResponse) {
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: editThirdServiceProvider,
+        partName:"Third Party Service Provider",
+      });
+    }
+    if (editServiceProvider !== formData[20]?.partResponse) {
+      const st = JSON.stringify(editServiceProvider);
 
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: st,
-    //     partName: formData[20].partName,
-    //   });
-    // }
-    // if (editExecutiveInformation !== formData[21]?.partResponse) {
-    //   const st = JSON.stringify(editExecutiveInformation);
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: st,
+        partName:"Service Provider 1",
+      });
+    }
+    if (editExecutiveInformation !== formData[21]?.partResponse) {
+      const st = JSON.stringify(editExecutiveInformation);
 
-    //   patchData.push({
-    //     path: "/partResponse",
-    //     op: "replace",
-    //     value: st,
-    //     partName: formData[21].partName,
-    //   });
-    // }
+      patchData.push({
+        path: "/partResponse",
+        op: "replace",
+        value: st,
+        partName:"Executive Information",
+      });
+    }
 
 
     if (patchData.length > 0) {
