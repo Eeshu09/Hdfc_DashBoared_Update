@@ -18,14 +18,10 @@ import indianStates from "./state.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { toast, ToastContainer } from "react-toastify";
 import { useLocation } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import handleApprove from "../Service/patch";
 import { useContext } from "react";
 import { DarkContext } from "../../scenes/global/DarkBar";
-
-
-
-
+import { useParams } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Table,
@@ -74,11 +70,19 @@ const useStyles = makeStyles((theme) => ({
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const Tabsection1 = ({ onNext }) => {
+  const queryParams = new URLSearchParams(window.location.search);
+
+const mId = queryParams.get('merchantId');
+const fId = queryParams.get('formId');
+
+if (mId && fId) {
+  console.log("Merchant ID:", mId);
+  console.log("Form ID:", fId);
+} else {
+  console.error("Merchant ID or Form ID is missing in the URL.");
+}
   const { isDark } = useContext(DarkContext);
-  console.log("isDark", isDark);
-
-  console.log("fid Mid",mId,fId)
-
+  console.log("mrkj",mId,fId);
   const [merchantExpanded, setMerchantExpanded] = useState(true); 
   const [qsaExpanded, setQsaExpanded] = useState(true); 
   const [country, setCountry] = useState("India");
@@ -282,10 +286,10 @@ const Tabsection1 = ({ onNext }) => {
 
 
   const handleSubmitPost = async (e) => {
-    if (activeSubmit) {
-      handleApprove(e);
-      return;
-    }
+    // if (activeSubmit) {
+    //   handleApprove(e);
+    //   return;
+    // }
 
     try {
       const payload = {
@@ -311,10 +315,8 @@ const Tabsection1 = ({ onNext }) => {
       toast.success(result.message);
       window.location.reload();
 
-      // Additional logic or state updates after successful submission
     } catch (error) {
       console.error("Error:", error);
-      // Handle error scenarios
     }
   };
   const patchModifiedFields = async () => {
