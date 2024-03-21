@@ -47,11 +47,17 @@ function FormComplanceModal({rowData,formModalOpen,setFormModalOpen,handleFormCl
           getAllFormId();
     },[rowData])
     console.log("rowdata",rowData);
-    const goToForm=()=>{
-      console.log('console',emailData);
+    
+    const goToForm = () => {
+      if (!emailData.formId) {
+        toast.error("Please select a FormId",{
+          position:'top-center'
+        });
+        return;
+      }
       navigate(`/hdfcForm?merchantId=${emailData.merchantId}&formId=${emailData.formId}`);
     }
-  
+    
     return(
       <>
      
