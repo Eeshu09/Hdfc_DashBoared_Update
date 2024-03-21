@@ -19,6 +19,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { toast, ToastContainer } from "react-toastify";
 import { useLocation } from 'react-router-dom';
 import handleApprove from "../Service/patch";
+import {  CircularProgress } from "@mui/material";
+
 import { useContext } from "react";
 import { DarkContext } from "../../scenes/global/DarkBar";
 import { useParams } from "react-router-dom";
@@ -41,6 +43,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Signature from "./Signature";
 import { mId, fId } from "./const";
 import { EditCalendarRounded } from "@mui/icons-material";
+import { set } from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
   accordionHeader: {
@@ -99,7 +102,7 @@ if (mId && fId) {
   const [executiveTitle, setExecutiveTitle] = useState("");
   const [activeSubmit, setActiveSubmit] = useState(false);
   const [formData, setFormData] = useState(null);
-
+  const [loader,setLoader]=useState(false);
   // const [isFormEditable, setIsFormEditable] = useState(false);
   const [isReadyForUpdate, setIsReadyForUpdate] = useState(false);
 
@@ -239,6 +242,7 @@ if (mId && fId) {
         setEditPaymentApplication(paymentApplicationObject);
       }
     }
+
     // if (formData && Array.isArray(formData) && formData.length > 0) {
     //   const serviceProvider =
 
@@ -280,6 +284,7 @@ if (mId && fId) {
 
 
   console.log("edIT", editServiceProvider);
+
 
   // ..............................................part 3...................................
 
@@ -347,7 +352,9 @@ if (mId && fId) {
     }
   };
   const patchModifiedFields = async () => {
+    setLoader(true);
     const patchData = [];
+    let successfulCalls = 0; 
 
     if (editCompanyName !== formData[0]?.partResponse) {
       patchData.push({
@@ -474,7 +481,7 @@ if (mId && fId) {
         path: "/partResponse",
         op: "replace",
         value: st,
-        partName: formData[14].partName
+        partName:"Facility 1"
       })
     }
     if (editPaymentApplication !== formData[15]?.partResponse) {
@@ -565,28 +572,31 @@ if (mId && fId) {
         // Log all patch responses
         patchResponses.forEach((responseData, index) => {
           console.log(`Patch response ${index + 1}:`, responseData);
+          successfulCalls++;
         });
 
-        // Update formData state with new values if needed
-        // if (patchResponses.length > 0) {
-        //   const updatedFormData = { ...formData };
-        //   patchResponses.forEach((responseData, index) => {
-        //     const updatedIndex = index === 0 ? 0 : 1;
-        //     updatedFormData[updatedIndex] = {
-        //       ...responseData[updatedIndex],
-        //       partResponse: index === 0 ? editCompanyName : editDba,
-        //     };
-        //   });
-        //   setFormData(updatedFormData);
-        // }
+        if (successfulCalls === patchData.length) {
+          setLoader(false); // Set setLoading to false after all successful API calls
+          toast.success("Update Successfully please submit your form",{
+            position:'top-center'
+          });
+          setActiveSubmit(true);
+        } else {
+          toast.error("Failed to update form."); // Handle case where some API calls failed
+        }
+      }
 
-        toast.success("Update Successfully please submit your form");
-        // window.location.reload();
-        setActiveSubmit(true);
-      } catch (error) {
+      //   toast.success("Update Successfully please submit your form");
+      //   // window.location.reload();
+      //   setActiveSubmit(true);
+      // }
+       catch (error) {
         console.error("Error patching data:", error);
         toast.error("Failed to update form.");
       }
+    }
+    else {
+      setLoader(false); 
     }
   };
 
@@ -788,7 +798,8 @@ if (mId && fId) {
   };
 
   const handleSavepost = async (event) => {
-    event.preventDefault();
+    event.preventDefault();   
+          setLoader(true);
 
     // Define an array to hold all parts of the form
     const staticParts = [
@@ -1012,6 +1023,7 @@ if (mId && fId) {
     }
     setIsFormEditable(false); // Disable form editing after save
     setActiveSubmit(true);
+    setLoader(false);
   };
 
   return (
@@ -2260,9 +2272,7 @@ if (mId && fId) {
 
         <Accordion>
           <AccordionSummary
-            // expandIcon={<ExpandMoreIcon />}
-            // aria-controls="panel3-content"
-            // id="panel3-header"
+           
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3-content"
             id="panel3-header"
@@ -2415,6 +2425,8 @@ if (mId && fId) {
               color="primary"
               onClick={handleEditUpdateToggle}
               style={{ width: "150px", height: "40px" }}
+              disabled={loader}
+
             >
               {isFormEditable ? "Update" : "Edit"}
             </Button>
@@ -2424,6 +2436,7 @@ if (mId && fId) {
               color="primary"
               type="submit"
               style={{ width: "150px", height: "40px" }}
+              disabled={loader}
             >
               Save
             </Button>
@@ -2441,6 +2454,7 @@ if (mId && fId) {
           </Button>
         </Box>
       </form>
+      <ToastContainer/>
     </>
   );
 };
