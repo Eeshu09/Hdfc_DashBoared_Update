@@ -33,7 +33,7 @@ const fetchData = async () => {
 
 const MerchantForm = () => {
   const{pdfData,setPdfData}=useContext(pdfContext);
-  const[pdfLoader,setPdfLoader]=useState(false);
+  const[pdfLoaders,setPdfLoaders]=useState({});
   const navigate=useNavigate();
   const {isLoading,error,data:MerchantSubmissionsData,refetch}=useQuery({queryKey:["SubmissionData"],
   queryFn:fetchData,
@@ -49,7 +49,7 @@ const MerchantForm = () => {
   const storedUserId = sessionStorage.getItem("userId");
   const [rowData, setRowData] = useState("");
   const [reviewComments, setReviewComments] = useState("");
-
+  const [clickedRowId, setClickedRowId] = useState("");
   const handlePopoverOpen = (event, row, disc) => {
     setAnchorEl(event.currentTarget);
     setRowData(row);
@@ -109,8 +109,14 @@ const MerchantForm = () => {
     handlePopoverClose();
   };
   const handlePdf = async (row) => {
+    setPdfLoaders((prevLoader)=>(
+      {
+        ...prevLoader,[row.id]:true,
+      }
+    ))
     console.log("row",row);
-    setPdfLoader(true);
+    // setPdfLoader(true);
+   
     try {
       const response = await axios.get(
         `${BASE_URL}DownloadPDF?FormId=${row.formID}&MerchantId=${row.merchantID}`,
@@ -133,13 +139,17 @@ const MerchantForm = () => {
       toast.success("pdf downloas successfully",{
         position:'top-center'
       })
-      setPdfLoader(false);
     } catch (error) {
       toast.error("something went wrong please try again",{
         position:'top-center'
       })
       console.error('Error downloading file:', error);
-      setPdfLoader( false);
+    }finally{
+      setPdfLoaders((prevLoader)=>(
+        {
+          ...prevLoader,[row.id]:false,
+        }
+      ))
     }
   };
 
@@ -225,7 +235,7 @@ const MerchantForm = () => {
               Disapprove
             </Button>
             &nbsp;&nbsp;
-            {pdfLoader ?<CircularProgress size={20} color='success'/>:
+            {pdfLoaders[params.row.id] ?<CircularProgress size={20} color='success'/>:
             <Button
               size="small"
               variant="contained"
@@ -262,6 +272,7 @@ const MerchantForm = () => {
      
       <ToastContainer />
     </Box>
+   
   );
 };
 

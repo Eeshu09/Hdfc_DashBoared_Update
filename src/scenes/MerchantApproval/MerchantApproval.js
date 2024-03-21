@@ -30,6 +30,8 @@ import {
   import ViewImageModal from "../../components/Modal/ViewImageModal";
   import EditModal from "../../components/Modal/EditModal";
   import Table from "../../components/Table";
+  import EditIcon from '@mui/icons-material/Edit';
+
   const fetchData = async () => {
     const response = await fetch(`${BASE_URL}GetallMerchant`);
     const result = await response.json();
@@ -162,7 +164,7 @@ import {
           >
             <Button size="small" variant="contained" color="success" onClick={() => handleEdit(params.row)} >
               Edit
-            </Button><Button style={{color:isDark?"black":"white"}} onClick={()=>saveMerchantId(params.row)}> <VisibilityIcon/></Button>
+            </Button><Button style={{color:isDark?"black":"white"}} onClick={()=>saveMerchantId(params.row)}> <EditIcon/></Button>
            
             
   
