@@ -66,7 +66,7 @@ const isHdfcForm = window.location.pathname === "/hdfcForm";
         <div className="app">
           {sidebarVisible && <Sidebar isSidebar={isSidebar} />}
           <main className="content">
-            {!isLoginPage && !isPdf  && <Topbar setIsSidebar={setIsSidebar} />}
+            {!isLoginPage && !isPdf  && !isHdfcForm && <Topbar setIsSidebar={setIsSidebar} />}
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />

@@ -282,7 +282,7 @@ export default function Login() {
                   "Password contains less than 20 character"}
               </span>
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
+                control={<Checkbox value="remember" color="primary"  required/>}
                 label="Remember me"
               />
               <Button
@@ -295,11 +295,7 @@ export default function Login() {
                 {loading ? <CircularProgress size={24} /> : "Sign In"}{" "}
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="/reset-password" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
+              
               </Grid>
             </Box>
           </CustomTabPanel>

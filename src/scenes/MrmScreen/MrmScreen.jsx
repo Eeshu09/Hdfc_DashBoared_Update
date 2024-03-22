@@ -1,5 +1,5 @@
 
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Tooltip } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import InputLabel from "@mui/material/InputLabel";
@@ -32,6 +32,8 @@ import FormComplanceModal from "../../components/Modal/FormComplanceModal";
 import { useNavigate } from "react-router-dom";
 import { SelectAllOutlined } from "@mui/icons-material";
 import Header from "../../components/Header";
+import EditIcon from '@mui/icons-material/Edit';
+
 
 
 function MrmScreen(){ 
@@ -47,10 +49,10 @@ function MrmScreen(){
   const[selectImage,setSelectImage]=useState('');
 
   const navigate = useNavigate();
+  const{isDark}=useContext(DarkContext);
 
 
     const MrmEmail = sessionStorage.getItem("MrmEmail");
-    console.log("mrm", MrmEmail);
 
     const SelectImages=(e)=>{
       const file=e.target.files[0];
@@ -114,7 +116,6 @@ function MrmScreen(){
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [loading, setLoading] = useState(false);
-    const { isDark } = useContext(DarkContext);
 
     const { isCollapsed } = useContext(SidebarContext);
     const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -213,9 +214,12 @@ function MrmScreen(){
               style={{ cursor: "pointer"}}
               
             >
-              <Button size="small" variant="contained" color="success"onClick={() => handleEdit(params.row)}>
+                    <Tooltip title="Edit"><EditIcon onClick={()=>handleEdit(params.row)}/></Tooltip>
+
+              {/* <Button size="small" variant="contained" color="success"onClick={() => handleEdit(params.row)}>
                 Edit
-              </Button>&nbsp;
+              </Button> */}
+              &nbsp;&nbsp;
               {params.row.status==true && <Button size="small" variant="contained" color="error" onClick={()=>formModal(params.row)}>
                 Fill Complaince Form
               </Button> }

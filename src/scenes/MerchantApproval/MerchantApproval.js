@@ -8,6 +8,7 @@ import {
     Select,
     MenuItem,
     FormControl,
+    Tooltip,
   } from "@mui/material";
   import { DataGrid, GridToolbar } from "@mui/x-data-grid";
   import { tokens } from "../../theme";
@@ -159,12 +160,15 @@ import {
         cellClassName: "custom-cell",
         renderCell: (params) => (
           <div
-            style={{ cursor: "pointer",display:'flex',justifyContent:"space-around" }}
+            style={{ cursor: "pointer",display:'flex',justifyContent:"space-between" }}
            
           >
-            <Button size="small" variant="contained" color="success" onClick={() => handleEdit(params.row)} >
-              Edit
-            </Button><Button style={{color:isDark?"black":"white"}} onClick={()=>saveMerchantId(params.row)}> <EditIcon/></Button>
+            {/* <Button size="small" variant="contained" color="success" onClick={() => handleEdit(params.row)} > */}
+            
+           <Tooltip title="Edit"><EditIcon onClick={()=>handleEdit(params.row)}/></Tooltip> &nbsp;&nbsp;&nbsp;
+          <Tooltip title ="approve disapprove"><VisibilityIcon onClick={()=>saveMerchantId(params.row)}/></Tooltip>  
+            {/* </Button> */}
+            {/* <Button style={{color:isDark?"black":"white"}} onClick={()=>saveMerchantId(params.row)}> <EditIcon/></Button> */}
            
             
   

@@ -8,6 +8,7 @@ import {
   Select,
   MenuItem,
   FormControl,
+  Tooltip,
 } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -31,6 +32,8 @@ import Skeleton from '@mui/material/Skeleton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { DarkContext } from "../global/DarkBar";
 import Table from "../../components/Table";
+import EditIcon from '@mui/icons-material/Edit';
+
 
 
 const fetchData = async () => {
@@ -133,9 +136,11 @@ const Contacts = () => {
           style={{ cursor: "pointer",display:'flex',justifyContent:"space-around" }}
          
         >
-          <Button size="small" variant="contained" color="success" onClick={() => handleEdit(params.row)} >
+         <Tooltip title="Edit"><EditIcon onClick={()=>handleEdit(params.row)}/></Tooltip>
+         
+          {/* <Button size="small" variant="contained" color="success" onClick={() => handleEdit(params.row)} >
             Edit
-          </Button>
+          </Button> */}
          
           
 

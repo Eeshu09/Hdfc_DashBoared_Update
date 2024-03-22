@@ -57,10 +57,11 @@ const Topbar = () => {
           
           {isDark ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
         </IconButton>
+        {mrmScreen &&
         <IconButton onClick={handleLogOut}>
-        {mrmScreen && <LogoutIcon/>}
+         <LogoutIcon/>
         </IconButton>
-        
+}
       </Box>
     </Box>
   );
