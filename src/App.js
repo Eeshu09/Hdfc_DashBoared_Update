@@ -84,10 +84,14 @@ const isHdfcForm = window.location.pathname === "/hdfcForm";
               <Route path="merchantApproval" element={<MerchantApproval/>}/>
               <Route path="/merchantLog" element={<MerchantLog/>}/>
               <Route path="/adminLog" element={<AdminLog/>}/>
+             
+             
+              </Route>
+              <Route element={<PrivateRoute1/>}>
               <Route path="/mrm" element={<MrmScreen/>}/>
               <Route path ="/hdfcForm" element={<Mainform/>}/>
 
-             
+
               </Route>
               <Route element={<Login/>} path="/"/>
 

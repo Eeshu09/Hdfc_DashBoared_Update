@@ -54,6 +54,10 @@ export default function Login() {
       if (storedUserId) {
         await navigate("/dashBoard");
       }
+      else if(AdminEmail){
+        await navigate("/mrm")
+      }
+      
     } catch (error) {
       console.error("Error occurred while checking authentication:", error);
     }
