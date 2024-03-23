@@ -17,12 +17,13 @@ import MerchantList from "./scenes/MerchantList/index";
 import MerchantForm from "./scenes/MerchantList/MerchantForm";
 import FormInfo from "./scenes/MerchantList/FormInfo";
 import { ToastContainer } from "react-toastify";
-import ProtectedRoute from "./utils/ProtectedRoute";
 import MrmScreen from "./scenes/MrmScreen/MrmScreen";
 import MerchantApproval from "./scenes/MerchantApproval/MerchantApproval";
 import MerchantLog from "./scenes/logs/MerchantLog";
 import AdminLog from "./scenes/logs/AdminLog";
 import Mainform from "../src/components/Form/Mainform";
+import PrivateRoute from "./utils/PrivateRoutes";
+import PrivateRoute1 from "./utils/PrivateRoutes1";
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -68,6 +69,34 @@ const isHdfcForm = window.location.pathname === "/hdfcForm";
           <main className="content">
             {!isLoginPage && !isPdf  && !isHdfcForm && <Topbar setIsSidebar={setIsSidebar} />}
             <Routes>
+              <Route element={<PrivateRoute/>}>
+                <Route element={<Dashboard/>}path="/dashboard" exact/>
+                <Route element={<MerchantList/>} path="/merchantList"/>
+                <Route path="/form" element={<Form />} />
+              <Route path="/update" element={<Update />} />
+              <Route path="/createAdmin" element={<CreateAdmin />} />
+              <Route path="/saqs" element={<Saq />} />
+              <Route path="/changePassword" element={<ChangePass />} />
+              <Route path="/reset-password" element={<ResetPass />} />
+              <Route path="bulkupload" element={<Bulkupload />} />
+              <Route path="merchantForm" element={<MerchantForm />} />
+              <Route path="formInformation" element={<FormInfo />} />
+              <Route path="merchantApproval" element={<MerchantApproval/>}/>
+              <Route path="/merchantLog" element={<MerchantLog/>}/>
+              <Route path="/adminLog" element={<AdminLog/>}/>
+              <Route path="/mrm" element={<MrmScreen/>}/>
+              <Route path ="/hdfcForm" element={<Mainform/>}/>
+
+             
+              </Route>
+              <Route element={<Login/>} path="/"/>
+
+              
+              </Routes>
+             
+             
+            
+            {/* <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/merchantList" element={<MerchantList />} />
@@ -85,7 +114,7 @@ const isHdfcForm = window.location.pathname === "/hdfcForm";
               <Route path="/adminLog" element={<AdminLog/>}/>
               <Route path="/mrm" element={<MrmScreen/>}/>
               <Route path ="/hdfcForm" element={<Mainform/>}/>
-            </Routes>
+            </Routes> */}
           </main>
         </div>
       </ThemeProvider>

@@ -27,7 +27,7 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import CustomTabPanel from "./CustomTabPanel";
-
+import { Navigate } from "react-router-dom";
 const defaultTheme = createTheme();
 CustomTabPanel.propTypes = {
   children: PropTypes.node,
@@ -48,20 +48,21 @@ export default function Login() {
   const storedUserId = sessionStorage.getItem("userId");
   const  AdminEmail=sessionStorage.getItem("MrmEmail");
  
-//   useEffect(() => {
-//   const checkAuthentication = async () => {
-//     try {
-//       if (storedUserId) {
-//         await navigate("/DashBoard");
-//       }
-//     } catch (error) {
-//       console.error("Error occurred while checking authentication:", error);
-//     }
-//   };
+  useEffect(() => {
+  const checkAuthentication = async () => {
+    try {
+      if (storedUserId) {
+        await navigate("/dashBoard");
+      }
+    } catch (error) {
+      console.error("Error occurred while checking authentication:", error);
+    }
+  };
 
-//   checkAuthentication();  
+  checkAuthentication();  
 
-// }, [storedUserId, navigate]);
+}, [storedUserId, navigate]);
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
