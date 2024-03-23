@@ -40,6 +40,31 @@ function EditModal({ selectedItem, editModalOpen, setEditModalOpen, handleCloseM
   }
 
   const handleEditSubmit = async (email) => { 
+    if (!editData.email || !editData.leagalName || !editData.dbaName || !editData.merchantType) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+  
+    // Validation for email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(editData.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+  
+    // Validation for legal name (alphabets only)
+    const legalNameRegex = /^[a-zA-Z\s]+$/;
+    if (!legalNameRegex.test(editData.leagalName)) {
+      toast.error("Legal name should contain only alphabets and spaces");
+      return;
+    }
+  
+    // Validation for DBA name (alphabets only)
+    const dbaNameRegex = /^[a-zA-Z\s]+$/;
+    if (!dbaNameRegex.test(editData.dbaName)) {
+      toast.error("DBA name should contain only alphabets and spaces");
+      return;
+    }
     setLoading(true);
     try {
         const patchData = [
